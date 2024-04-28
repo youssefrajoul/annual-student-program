@@ -1,0 +1,77 @@
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 3em;
+  color: #0073b7;
+}
+
+header #title-container {
+  display: inline-block;
+  margin: 20px;
+}
+
+header #img-container {
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+}
+
+#img-container img {
+  width: 100px;
+  height: 100px;
+}
+
+header p {
+  font-size: 0.8em;
+  color: #ddd;
+}
+
+main {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+main p {
+  font-size: 1.1em;
+  text-align: left;
+}
+
+#students-group {
+  display: flex;
+  justify-content: center;
+}
+
+#course-table, #student-table {
+  float: left;
+  width: 40%;
+  margin: 5%;
+}
+
+#vertical-align {
+  float: right;
+  border: 10px solid #504f4f;
+  width: 5px;
+  height: 300px;
+  margin: 0 10px;
+  margin: 5%;
+  border-radius: 50px;
+}
+
+
+
+#form-add-course, #form-add-student {
+  float: right;
+  width: 40%;
+  margin: 5%;
+}
+
+.errorMsg {
+  color: red;
+}

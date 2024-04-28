@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>PAE-WEBG6</title>
+</head>
+
+<body>
+    <header>
+        <div id="title-container">
+            <h1>Programme annuel des etudiants</h1>
+            <p>HE2B-ESI/WBG6/59939/23-24</p>
+        </div>
+        <div id="img-container">
+            <img th:src="@{/imgage/he2b-esi.jpg}" alt="he2b-esi-logo" />
+        </div>
+    </header>
+    <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="https://poesi.esi-bru.be/my/" th:href="@{/}">
+                    <i class="fa-solid fa-house fa-bounce"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://poesi.esi-bru.be/my/" th:href="@{/courses}">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://poesi.esi-bru.be/my/" th:href="@{/students}">Students</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main layout:fragment="content">
+        Ce contenu sera remplacé par le vrai.
+    </main>
+</body>
+
+</html>
