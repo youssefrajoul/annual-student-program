@@ -12,46 +12,28 @@
     <header></header>
     <nav></nav>
     <main layout:fragment="content">
-        <p th:text="${student.name}"></p>
-        
-        <form th:action="@{/courseEnrolment(studentId=${student.id})}" method="post">
-            <select id="spinner" name="courseId" v-model="spinnerOption" @change="spinnerChange">
-                <option value="">Choisissez un cours...</option>
-                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.id} + ' - ' +${course.title}">
-                    error fetch data
-                </option>
-            </select>
-            <button type="submit">Sign Up</button>
-        </form>
 
-        <div >
-            <div id="course-table">
-                <p>Liste des cours</p>
-                <table class="table table-striped-columns table-bordered table-primary">
-                    <thead>
-                        <tr>
-                            <th scope="col">Sigle</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Ects</th>
-                        </tr>
-                    </thead>
-                    <tbody th:if="${!studentCourses.isEmpty}">
-                        <tr th:each="course : ${studentCourses}">
-                            <td th:text="${course.id}" th:href="@{/course(courseId=${course.id})}"></td>
-                            <td><a th:text="${course.title}" th:href="@{/course(courseId=${course.id})}"></a></td>
-                            <td th:text="${course.credits}"></td>
-                        </tr>
-                    </tbody>
-                    <tbody th:unless="${!studentCourses.isEmpty}">
-                        <tr>
-                            <td colspan="3">
-                                Aucun cours
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <p th:text="${student.name}"></p>
+
+
+        <div th:replace="~{fragments/courses-table.html::courses-table}">
+            Error while replacing thymeleaf fragments
         </div>
+
+
+        <div id="form-add-course">
+            <form th:action="@{/addCourse(studentId=${student.id})}" method="post">
+                <select id="spinner" name="courseId" v-model="spinnerOption" @change="spinnerChange">
+                    <option value="">Choisissez un cours...</option>
+                    <option th:each="course : ${coursesList}" th:value="${course.id}"
+                        th:text="${course.id} + ' - ' +${course.title}">
+                        error fetch data
+                    </option>
+                </select>
+                <button type="submit">Add Course</button>
+            </form>
+        </div>
+
     </main>
 </body>
 

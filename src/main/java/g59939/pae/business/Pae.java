@@ -28,7 +28,7 @@ public class Pae {
         return courseRepository.findById(courseId).get();
     }
 
-    public void addCourse(Course course) {
+    public void newCourse(Course course) {
         courseRepository.save(course);
     }
 
@@ -52,22 +52,26 @@ public class Pae {
         return studentRepository.findById(studentId);
     }
 
-    public void addStudent(Student student) {
+    public void newStudent(Student student) {
         studentRepository.save(student);
     }
 
-    public void courseEnrolment(int studentId, String courseId) {
-
+    public void addStudent(int studentId, String courseId) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("Student not found"));
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new IllegalArgumentException("Course not found"));
-
         student.getCourses().add(course);
-        course.getStudents().add(student);
-
         studentRepository.save(student);
-        courseRepository.save(course);
+    }
+
+    public void addCourse(int studentId, String courseId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+        student.getCourses().add(course);
+        studentRepository.save(student);
     }
 
 }

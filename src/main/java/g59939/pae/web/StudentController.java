@@ -24,9 +24,9 @@ public class StudentController {
     @GetMapping("/student")
     public String student(Model model, @RequestParam String studentId) {
         model.addAttribute("student", business.getStudent(Integer.valueOf(studentId)).get());
-        model.addAttribute("courses", business.getCourses());
+        model.addAttribute("coursesList", business.getCourses());
         model.addAttribute("courseId", new String());
-        model.addAttribute("studentCourses", business.getStudentsCourses(Integer.valueOf(studentId)));
+        model.addAttribute("courses", business.getStudentsCourses(Integer.valueOf(studentId)));
         return "student";
     }
 
@@ -37,20 +37,20 @@ public class StudentController {
         return "students";
     }
 
-    @PostMapping("/addStudent")
-    public String addStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult,
+    @PostMapping("/newStudent")
+    public String newStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("students", business.getStudents());
             return "students";
         }
-        business.addStudent(student);
+        business.newStudent(student);
         return "redirect:/students";
     }
 
-    @PostMapping("/courseEnrolment")
-    public String courseEnrolment(@RequestParam String courseId, @RequestParam int studentId, Model model) {
-        business.courseEnrolment(studentId, courseId);
+    @PostMapping("/addCourse")
+    public String addCourse(@RequestParam String courseId, @RequestParam int studentId, Model model) {
+        business.addCourse(studentId, courseId);
         return "redirect:/student?studentId=" + studentId;
     }
 

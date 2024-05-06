@@ -14,35 +14,12 @@
     <main layout:fragment="content">
 
         <div id="courses-group">
-            <div id="course-table">
-                <p>Liste des cours</p>
-                <table class="table table-striped-columns table-bordered table-primary">
-                    <thead>
-                        <tr>
-                            <th scope="col">Sigle</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Ects</th>
-                        </tr>
-                    </thead>
-                    <tbody th:if="${!courses.isEmpty}">
-                        <tr th:each="course : ${courses}">
-                            <td th:text="${course.id}" th:href="@{/course(courseId=${course.id})}"></td>
-                            <td><a th:text="${course.title}" th:href="@{/course(courseId=${course.id})}"></a></td>
-                            <td th:text="${course.credits}"></td>
-                        </tr>
-                    </tbody>
-                    <tbody th:unless="${!courses.isEmpty}">
-                        <tr>
-                            <td colspan="3">
-                                Aucun cours
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div th:replace="~{fragments/courses-table.html::courses-table}">
+                Error while replacing thymeleaf fragments
             </div>
-            <div id="form-add-course">
+            <div id="form-new-course">
                 <p>Ajouter un cours</p>
-                <form th:action="@{/addCourse}" th:object="${course}" method="post">
+                <form th:action="@{/newCourse}" th:object="${course}" method="post">
                     <div class="mb-3">
                         <label for="id" class="form-label">Sigle</label>
                         <input type="text" th:field="*{id}" class="form-control" id="id" aria-describedby="Sigle">
@@ -58,7 +35,7 @@
                         <input type="number" th:field="*{credits}" class="form-control" id="credits">
                         <span th:errors="*{credits}" class="errorMsg">error: Invalid Input</span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="submit" class="btn btn-primary">New Course</button>
                 </form>
             </div>
         </div>

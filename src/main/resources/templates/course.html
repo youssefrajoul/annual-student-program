@@ -12,35 +12,22 @@
     <header></header>
     <nav></nav>
     <main layout:fragment="content">
-        
+        <p th:text="|${course.id} - ${course.title}|"></p>
+        <div th:replace="~{fragments/students-table.html::students-table}">
+            Error while replacing thymeleaf fragments
+        </div>
 
-        <div id="student-table">
-            <p th:text="|${course.id} - ${course.title}|"></p>
-            <table class="table table-striped-columns table-bordered table-primary">
-                <thead>
-                    <tr>
-                        <th scope="col">Matricule</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Genre</th>
-                        <th scope="col">Section</th>
-                    </tr>
-                </thead>
-                <tbody th:if="${!students.isEmpty}">
-                    <tr th:each="student : ${students}">
-                        <td th:text="${student.id}"></td>
-                        <td><a th:text="${student.name}" th:href="@{/student(studentId=${student.id})}"></a></td>
-                        <td th:text="${student.gender}"></td>
-                        <td th:text="${student.section}"></td>
-                    </tr>
-                </tbody>
-                <tbody th:unless="${!students.isEmpty}">
-                    <tr>
-                        <td colspan="3">
-                            Aucun Etudiant
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="form-add-student">
+            <form th:action="@{/addStudent(courseId=${course.id})}" method="post">
+                <select id="spinner" name="studentId" v-model="spinnerOption" @change="spinnerChange">
+                    <option value="">Choisissez un cours...</option>
+                    <option th:each="student : ${studentsList}" th:value="${student.id}"
+                        th:text="${student.id} + ' - ' +${student.name}">
+                        error fetch data
+                    </option>
+                </select>
+                <button type="submit">Add Student</button>
+            </form>
         </div>
     </main>
 </body>

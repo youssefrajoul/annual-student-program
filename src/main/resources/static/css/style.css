@@ -48,7 +48,7 @@ main p {
   justify-content: center;
 }
 
-#course-table, #student-table {
+#courses-table, #students-table {
   float: left;
   width: 40%;
   margin: 5%;
@@ -66,7 +66,7 @@ main p {
 
 
 
-#form-add-course, #form-add-student {
+#form-add-course, #form-new-course, #form-add-student, #form-new-student {
   float: right;
   width: 40%;
   margin: 5%;

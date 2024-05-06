@@ -1,0 +1,28 @@
+<div th:fragment="students-table" id="students-table">
+    <p>Liste des etudiants</p>
+    <table class="table table-striped-columns table-bordered table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Matricule</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Section</th>
+            </tr>
+        </thead>
+        <tbody th:if="${!students.isEmpty}">
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}"></td>
+                <td><a th:text="${student.name}" th:href="@{/student(studentId=${student.id})}"></a></td>
+                <td th:text="${student.gender}"></td>
+                <td th:text="${student.section}"></td>
+            </tr>
+        </tbody>
+        <tbody th:unless="${!students.isEmpty}">
+            <tr>
+                <td colspan="3">
+                    Aucun cours
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

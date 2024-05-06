@@ -14,43 +14,18 @@
     <main layout:fragment="content">
 
         <div id="students-group">
-            <div id="student-table">
-                <p>Liste des etudiants</p>
-                <table class="table table-striped-columns table-bordered table-primary">
-                    <thead>
-                        <tr>
-                            <th scope="col">Matricule</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Genre</th>
-                            <th scope="col">Section</th>
-                        </tr>
-                    </thead>
-                    <tbody th:if="${!students.isEmpty}">
-                        <tr th:each="student : ${students}">
-                            <td th:text="${student.id}"></td>
-                            <td><a th:text="${student.name}" th:href="@{/student(studentId=${student.id})}"></a></td>
-                            <td th:text="${student.gender}"></td>
-                            <td th:text="${student.section}"></td>
-                        </tr>
-                    </tbody>
-                    <tbody th:unless="${!students.isEmpty}">
-                        <tr>
-                            <td colspan="3">
-                                Aucun cours
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div th:replace="~{fragments/students-table.html::students-table}">
+                Error while replacing thymeleaf fragments
             </div>
-            <div id="vertical-align"></div>
-            <div id="form-add-student">
+
+            <div id="form-new-student">
                 <p>Ajouter un etudiant</p>
-                <form th:action="@{/addStudent}" th:object="${student}" method="post">
+                <form th:action="@{/newStudent}" th:object="${student}" method="post">
                     <div class="mb-3">Nom
                         <input type="text" th:field="*{name}" class="form-control" id="name" aria-describedby="Sigle">
                         <span th:errors="*{name}" class="errorMsg">error: Invalid Input</span>
                     </div>
-
 
                     <div>Genre:
                         <input type="radio" id="male" name="gender" value="MALE" th:field="*{gender}">
@@ -69,7 +44,7 @@
                         <label for="industrielle">Industrielle</label>
                         <span th:errors="*{section}" class="errorMsg">error: Invalid Input</span>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="submit" class="btn btn-primary">New Student</button>
                 </form>
             </div>
         </div>

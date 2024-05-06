@@ -36,6 +36,8 @@ public class CourseController {
     public String course(Model model, @RequestParam String courseId) {
         model.addAttribute("course", business.getCourse(courseId));
         model.addAttribute("students", business.getStudentsInCourse(courseId));
+        model.addAttribute("studentsList", business.getStudents());
+
         return "course";
     }
 
@@ -46,14 +48,19 @@ public class CourseController {
         return "courses";
     }
 
-    @PostMapping("/addCourse")
-    public String addCourse(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
+    @PostMapping("/newCourse")
+    public String newCourse(@ModelAttribute("course") @Valid Course course, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("courses", business.getCourses());
             return "courses";
         }
-        
-        business.addCourse(course);
+        business.newCourse(course);
         return "redirect:/courses";
+    }
+
+    @PostMapping("/addStudent")
+    public String addStudent(@RequestParam String courseId, @RequestParam int studentId, Model model) {
+        business.addStudent(studentId, courseId);
+        return "redirect:/course?courseId=" + courseId;
     }
 }
