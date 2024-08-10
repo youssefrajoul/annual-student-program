@@ -2,6 +2,9 @@ package g59939.pae.model;
 
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -29,5 +32,6 @@ public class Course {
     private int credits;
 
     @ManyToMany(mappedBy = "courses")
+    @JsonBackReference // @JsonBackReference is used with @JsonManagedReference to manage JsonMappingException while using api
     private Collection<Student> students;
 }

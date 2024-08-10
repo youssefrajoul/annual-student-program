@@ -19,13 +19,15 @@
 
         <div id="form-add-student">
             <form th:action="@{/addStudent(courseId=${course.id})}" method="post">
-                <select id="spinner" name="studentId" v-model="spinnerOption" @change="spinnerChange">
-                    <option value="">Choisissez un cours...</option>
+                <!-- this spinner shows the students that exists in DB -->
+                <!-- <select id="spinner" name="studentId" v-model="spinnerOption" @change="spinnerChange">
+                    <option value="">Students...</option>
                     <option th:each="student : ${studentsList}" th:value="${student.id}"
                         th:text="${student.id} + ' - ' +${student.name}">
                         error fetch data
                     </option>
-                </select>
+                </select> -->
+                <input type="text" name="studentId" id="studentId">
                 <button type="submit">Add Student</button>
             </form>
         </div>

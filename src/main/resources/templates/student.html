@@ -23,13 +23,14 @@
 
         <div id="form-add-course">
             <form th:action="@{/addCourse(studentId=${student.id})}" method="post">
-                <select id="spinner" name="courseId" v-model="spinnerOption" @change="spinnerChange">
+                <!-- <select id="spinner" name="courseId" v-model="spinnerOption" @change="spinnerChange">
                     <option value="">Choisissez un cours...</option>
                     <option th:each="course : ${coursesList}" th:value="${course.id}"
                         th:text="${course.id} + ' - ' +${course.title}">
                         error fetch data
                     </option>
-                </select>
+                </select> -->
+                <input type="text" name="courseId" id="courseId">
                 <button type="submit">Add Course</button>
             </form>
         </div>
